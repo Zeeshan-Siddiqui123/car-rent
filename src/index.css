@@ -11,3 +11,9 @@ body{
 .nav-img{
     background-image: url(../assests/carlogo.png);
 }
+.bg-img{
+    background-image: url(https://rental.maxwheelswp.com/wp-content/uploads/2022/06/bg-some.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+}
