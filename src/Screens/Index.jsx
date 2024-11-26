@@ -72,8 +72,8 @@ const Index = () => {
       </div>
       <div className='bg-img w-full h-[400px] flex items-center justify-center'>
         <div className='flex items-center flex-col'>
-          <h1 className='text-white'>Same-Day Delivery in UAE</h1>
-          <p className='text-slate-300 text-center'>At Carento, we specialize in fulfilling all rent a car in UAE  <br />requirements. We will ensure same-day delivery for private <br /> and business rent a car requirements.</p>
+          <h1 className='text-white'>Same-Day Delivery in Pakistan</h1>
+          <p className='text-slate-300 text-center'>At Rento, we specialize in fulfilling all rent a car in Pakistan  <br />requirements. We will ensure same-day delivery for private <br /> and business rent a car requirements.</p>
           <Link to='/rent-a-car'><button className='text-white bg-[#5277ba] px-4 py-3 mt-4'>Book Your Car Today!</button></Link>
         </div>
       </div>

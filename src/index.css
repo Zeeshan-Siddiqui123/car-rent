@@ -17,3 +17,17 @@ body{
     background-repeat: no-repeat;
     /* background-size: cover; */
 }
+.bg-img2{
+    background-image: url(https://carentoae.com/wp-content/uploads/2024/02/wp8833528-dubai-cars-wallpapers.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(90%);
+
+}
+.bg-img3{
+    background-image: url(https://carentoae.com/wp-content/uploads/2024/02/wp8833543-dubai-cars-wallpapers.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
