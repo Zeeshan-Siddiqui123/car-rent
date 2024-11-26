@@ -57,7 +57,7 @@ const Works = () => {
               </div>
 
             </div>
-            <p className='text-center text-white'>
+            <p className='text-center text-white font-bold'>
               Tourists from some countries including the <br /> rest of the GCC, USA, UK, Canada, Europe, <br /> and a few others can rent luxury cars without <br /> an international driving permit. Also, tourists <br /> from some countries will need international <br /> driving permits to drive and rent cars <br /> in Pakistan.
             </p>
             <div className='bg-white h-[280px] flex flex-col gap-3 rounded-md'>
