@@ -6,7 +6,7 @@ import carImage from '../assets/carlogo.png'
 const Navbar = () => {
     return (
         <div>
-            <nav className='w-full h-[80px] flex justify-between items-center bg-black z-[2px]'>
+            <nav className='w-full h-[80px] flex justify-between items-center bg-black z-10 fixed'>
                 <div className='w-[120px] ml-5 '><img src={carImage} alt="" /></div>
                 <div className='flex gap-4 text-lg'>
                     {routes.map(({ path, label }, index) => (
