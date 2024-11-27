@@ -31,3 +31,11 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.bg-img4{
+    background-image: url(https://carentoae.com/wp-content/uploads/2024/02/rolls_royce_cullinan_4k_hd_cars-3840x2160-1-scaled.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(90%);
+
+}

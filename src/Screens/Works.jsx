@@ -7,7 +7,7 @@ const Works = () => {
       <div className='bg-img2 w-full h-[300px] flex items-center justify-center'>
         <h1 className='text-white text-5xl'>The Process</h1>
       </div>
-      <div className="flex items-center justify-around flex-wrap w-full h-[500px]">
+      <div className="flex items-center justify-around flex-wrap w-full ">
         <div>
           <img src="https://carentoae.com/wp-content/uploads/2024/02/1688850463requirementsideimg.webp" alt="" />
         </div>
@@ -38,7 +38,7 @@ const Works = () => {
           </div>
         </div>
       </div>
-      <div className="bg-img3 w-full h-[600px] flex items-center justify-center">
+      <div className="bg-img3 w-full mt-16 h-[700px] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <p className='text-yellow-300 text-xl font-bold mt-4 text-center'>Clients Requirements</p>
           <p className='text-yellow-800 font-semibold text-5xl text-center '>Documents Required to Rent a Car in Pakistan</p>
