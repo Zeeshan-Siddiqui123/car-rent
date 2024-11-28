@@ -39,3 +39,11 @@ body{
     filter: brightness(90%);
 
 }
+.bg-img5{
+background-image: url(https://carentoae.com/wp-content/uploads/2024/02/9134f16218e3d4fa2af9571a4a64f3be.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(90%);
+
+}
