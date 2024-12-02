@@ -1,4 +1,4 @@
-import { mesage, Spin } from 'antd';
+import { message, Spin } from 'antd';
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card';
 
