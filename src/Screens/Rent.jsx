@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card';
 
 const Rent = () => {
-  onst [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
