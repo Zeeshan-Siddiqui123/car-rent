@@ -1,6 +1,7 @@
 import { message, Spin } from 'antd';
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card';
+import Loader from '../Components/Loader';
 
 const Rent = () => {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,7 @@ const Rent = () => {
   if (loading) {
     return (
       <div className='flex items-center justify-center' style={{ height: '100vh' }}>
-        <Spin size='large' />
+        <Loader/>
       </div>
     );
   }
@@ -38,7 +39,7 @@ const Rent = () => {
   return (
     <div className='mt-[100px]'>
         {/* <h2 className="text-3xl font-bold text-center mb-5 text-[#2aa8d2]">My Portfolio</h2> */}
-      <div className='flex items-center justify-evenly flex-wrap'>
+      <div className='flex items-center justify-evenly flex-wrap gap-3'>
       {products.map((product) => (
         <Card
           key={product.id}

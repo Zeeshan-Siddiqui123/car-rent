@@ -1,11 +1,19 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}", // Adjust to your file paths
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        moveCar: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        "move-car": "moveCar 2s linear infinite",
+      },
+    },
   },
   plugins: [],
-}
+};
