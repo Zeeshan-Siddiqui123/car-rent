@@ -3,7 +3,7 @@ import React from 'react'
 const Card = (props) => {
     const {image, name, description, price} = props
   return (
-    <div className='w-[350px] flex flex-col gap-2 bg-white rounded-md px-4 py-4 shadow shadow-slate-300 hover:w-[360px]'>
+    <div className='w-[350px] flex flex-col gap-2 bg-white rounded-md px-4 py-4 shadow shadow-slate-300 transition-transform transform hover:scale-105'>
       <img src={image} alt="" />
       <p className=''>{name}</p>
       <p className='font-bold text-lg'>{description}</p>

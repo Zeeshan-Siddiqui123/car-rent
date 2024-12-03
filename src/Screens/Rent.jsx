@@ -38,8 +38,9 @@ const Rent = () => {
 
   return (
     <div className='mt-[100px]'>
-        {/* <h2 className="text-3xl font-bold text-center mb-5 text-[#2aa8d2]">My Portfolio</h2> */}
-      <div className='flex items-center justify-evenly flex-wrap gap-3'>
+        <h4 className="font-bold text-center mb-5 text-[#5277ba]">Rent A Car</h4>
+        <h1 className="font-bold text-center mb-5 text-white">Our Vehicles Listing</h1>
+      <div className='flex items-center justify-evenly flex-wrap gap-4'>
       {products.map((product) => (
         <Card
           key={product.id}

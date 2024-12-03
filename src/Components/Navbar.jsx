@@ -11,7 +11,7 @@ const Navbar = () => {
                 <div className='flex gap-4 text-lg'>
                     {routes.map(({ path, label }, index) => (
                         <NavLink key={index} to={path} className={({isActive})=>
-                            isActive ? 'text-sky-500 underline font-bold text-sm': 'text-white text-sm hover:text-sky-500'}>{label}</NavLink>
+                            isActive ? 'text-[#5277ba] underline font-bold text-sm': 'text-white text-sm hover:text-[#5277ba]'}>{label}</NavLink>
                     ))}
                 </div>
                 <div></div>
