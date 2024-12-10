@@ -67,7 +67,7 @@ const Footer = () => {
             </div>
             <div>
                 <hr color='#5277ba' />
-                <p className='text-center text-white mt-5 mb-5'>Copyright 2024 © Carento, All Rights Reserved.</p>
+                <p className='text-center text-white mt-5 mb-5'>Copyright 2024 © Rento, All Rights Reserved.</p>
             </div>
         </div>
     )
