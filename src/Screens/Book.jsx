@@ -63,9 +63,16 @@ const Book = () => {
 
   return (
     <>
-    <div>
-        <img src="https://carentoae.com/wp-content/uploads/2024/02/Audi-Banner.jpg" alt="" />
+    <div className='img6 w-full h-[350px] flex items-center gap-2 mt-10'>
+        {/* <img src="https://carentoae.com/wp-content/uploads/2024/02/Audi-Banner.jpg" alt="" /> */}
+        <div className='flex items-center gap-2 ml-16 mt-[250px]'>
+        <Link to='/' className='text-white mt-2' >Home/</Link>
+        <Link to='/rent-a-car' className='text-white mt-2'>Go Back/</Link>
         <h1 className='text-2xl font-bold mb-2 text-white'>{product.description}</h1>
+        </div>
+        
+
+      
 
     </div>
     <div className='container mx-auto p-4 flex flex-col md:flex-row mt-16'>
@@ -101,9 +108,7 @@ const Book = () => {
         )}
         {orderPlaced && <p className='mt-4 text-green-500'>Your order has been placed successfully!</p>}
       </div>
-      <Button className='mt-4'>
-        <Link to='/rent-a-car'>Go Back</Link>
-      </Button>
+      
     </div>
     </>
   );
