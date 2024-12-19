@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Spin, message } from 'antd';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const API_BASE_URL = 'https://portfolio-server-jopl.onrender.com';
 
@@ -52,6 +55,17 @@ const Book = () => {
     );
   }
 
+  // Slider settings
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
+
   return (
     <div>
       <div className="img6 w-full h-[350px] flex items-center gap-2 mt-10">
@@ -91,11 +105,56 @@ const Book = () => {
           <input type="datetime-local" className="px-10 py-4" />
         </form>
 
-        <div>
-          <img src={product.image} alt={product.description} className="w-[600px]" />
+        {/* Slider Section */}
+        <div className="w-[600px]">
+          <Slider {...sliderSettings}>
+            <div>
+              <img src={product.image} alt={product.description} className="w-full h-auto" />
+            </div>
+            <div>
+              <img src={product.image2} alt={product.description} className="w-full h-auto" />
+            </div>
+            <div>
+              <img src={product.image3} alt={product.description} className="w-full h-auto" />
+            </div>
+            <div>
+              <img src={product.image4} alt={product.description} className="w-full h-auto" />
+            </div>
+          </Slider>
         </div>
+      </div>
+
+      {/* Details Section */}
+      <div className="flex flex-col gap-5 mt-4">
+        <p className="text-white text-2xl text-center">About this Car</p>
+        <p className="text-white text-2xl text-center">Rent a {product.description} in Pakistan</p>
+        <p className="text-white text-2xl text-center">{product.description} Rental In Pakistan</p>
+        <p className="text-slate-400 text-center mx-10">
+          Rent and drive this {product.description}, Pakistan for {product.price} rupees per day.
+          Rental cost includes basic comprehensive insurance. A security deposit of Rs 2,500 is
+          required. Contact Time Out Rent a Car directly for bookings and inquiries.
+        </p>
+        <p className="text-white text-2xl text-center">You are eligible to rent a car across the Pakistan provided you have <br /> the mentioned documents valid with you:</p><hr />
+        <div className='flex flex-col items-center justify-center'>
+          <p className="text-slate-400 font-bold text-xl ">For Pakistan Residents</p>
+          
+            <p className='text-white'>Pakistan driving License</p>
+            <p className="text-white">Nation Identity Card</p>
+          
+        </div><hr />
+        <div className='flex flex-col items-center justify-center'>
+          <p className="text-slate-400 font-bold text-xl ">For Tourists Visiting The Pakistan</p>
+        
+            <p className='text-white'>Passport</p>
+            <p className="text-white">Visit Visa</p>
+            <p className="text-white">Home Country Driving License</p>
+            <p className="text-white">International Driving Permit (IDP)</p>
+          
+        </div><hr />
+        <p className='text-center text-slate-400'>Visitors from the GCC, US, UK, Canada, Europe, and certain other countries <br /> can drive with their home country’s driving license,  without needing an IDP. <br /> Find out if your country’s driving license is valid in the Pakistan</p>
       </div>
     </div>
   );
 };
-export default Book
+
+export default Book;
