@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Spin, message, Button } from 'antd';
-import { LuBus } from 'react-icons/lu';
+import { Spin, message } from 'antd';
 
 const API_BASE_URL = 'https://portfolio-server-jopl.onrender.com';
 
@@ -10,9 +9,6 @@ const Book = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [address, setAddress] = useState('');
-  const [showOrderButton, setShowOrderButton] = useState(false);
-  const [orderPlaced, setOrderPlaced] = useState(false);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -32,86 +28,74 @@ const Book = () => {
     fetchProductDetails();
   }, [id]);
 
-  const handleAddressSubmit = () => {
-    if (address.trim()) {
-      setShowOrderButton(true);
-      message.success('Address saved successfully!');
-    } else {
-      message.error('Please enter a valid address.');
-    }
-  };
-
-  const placeOrder = () => {
-    setOrderPlaced(true);
-    message.success('Your order has been placed successfully!');
-    setAddress('');
-    setShowOrderButton(false);
-    setTimeout(() => setOrderPlaced(false), 3000);
-  };
-
   if (loading) {
-    return <div className='flex items-center justify-center'><Spin size='large' /></div>;
+    return (
+      <div className="flex items-center justify-center">
+        <Spin size="large" />
+      </div>
+    );
   }
 
   if (error) {
-    return <div className='flex items-center justify-center'><h2>{error}</h2></div>;
+    return (
+      <div className="flex items-center justify-center">
+        <h2>{error}</h2>
+      </div>
+    );
   }
 
   if (!product) {
-    return <div className='flex items-center justify-center'><h2>No product found.</h2></div>;
+    return (
+      <div className="flex items-center justify-center">
+        <h2>No product found.</h2>
+      </div>
+    );
   }
 
   return (
-    <>
-    <div className='img6 w-full h-[350px] flex items-center gap-2 mt-10'>
-        {/* <img src="https://carentoae.com/wp-content/uploads/2024/02/Audi-Banner.jpg" alt="" /> */}
-        <div className='flex items-center gap-2 ml-16 mt-[250px]'>
-        <Link to='/' className='text-white mt-2' >Home/</Link>
-        <Link to='/rent-a-car' className='text-white mt-2'>Go Back/</Link>
-        <h1 className='text-2xl font-bold mb-2 text-white'>{product.description}</h1>
-        </div>
-        
-
-      
-
-    </div>
-    <div className='container mx-auto p-4 flex flex-col md:flex-row mt-16'>
-      <div className='flex-1'>
+    <div>
+      <div className="img6 w-full h-[350px] flex items-center gap-2 mt-10">
         <img
-          src={product.image || 'https://via.placeholder.com/400x450'} // Fallback image
-          alt={product.title || 'Product'}
-          className='w-[400px] h-[450px] rounded-lg shadow-lg'
+          src="https://carentoae.com/wp-content/uploads/2024/02/Audi-Banner.jpg"
+          alt="Banner"
+          className="w-full h-full object-cover"
         />
+        <div className="absolute ml-16 mt-[250px]">
+          <Link to="/" className="text-white mt-2">
+            Home/
+          </Link>
+          <Link to="/rent-a-car" className="text-white mt-2">
+            Go Back/
+          </Link>
+          <h1 className="text-2xl font-bold mb-2 text-white">{product.description}</h1>
+        </div>
       </div>
-      <div className='flex-1 p-4'>
-        <h1 className='text-2xl font-bold mb-2 text-white'>{product.title}</h1>
-        <p className='text-lg mb-2 text-white'><strong>Price:</strong> ${product.price}</p>
-        <p className='text-md mb-2 text-white'><strong>Description:</strong> {product.description}</p>
-        {!orderPlaced && (
-          <div className='mt-4'>
-            <input
-              type='text'
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder='Enter your address'
-              className='border p-2 rounded w-full text-white'
-            />
+
+      <div className="flex items-center justify-center gap-10 flex-wrap-reverse mt-10">
+        <form className="flex flex-col gap-3 justify-center bg-[#f5f5f5] px-10 py-5 shadow-md">
+          <div className="bg-[#5277ba] px-10 py-8 flex items-center flex-col gap-2">
+            <p className="text-white font-bold text-lg">Rs: {product.price} per day</p>
+            <p className="text-white font-bold text-lg">Rs: {Math.round(product.price / 24)} per hour</p>
           </div>
-        )}
-        <Button type='primary' className='mt-4' onClick={handleAddressSubmit}>
-          <LuBus size={20} /> <span className='ml-2'>Order Now</span>
-        </Button>
-        {showOrderButton && (
-          <Button type='primary' className='mt-4 bg-green-500 text-white' onClick={placeOrder}>
-            Place Order
-          </Button>
-        )}
-        {orderPlaced && <p className='mt-4 text-green-500'>Your order has been placed successfully!</p>}
+
+          <label className="text-black mt-4">PickUp Address</label>
+          <input type="text" placeholder="Pickup Address" className="px-10 py-4" />
+
+          <label className="text-black">PickUp Date</label>
+          <input type="datetime-local" className="px-10 py-4" />
+
+          <label className="text-black">Drop Off Address</label>
+          <input type="text" placeholder="Drop Off Address" className="px-10 py-4" />
+
+          <label className="text-black">Drop Off Date</label>
+          <input type="datetime-local" className="px-10 py-4" />
+        </form>
+
+        <div>
+          <img src={product.image} alt={product.description} className="w-[600px]" />
+        </div>
       </div>
-      
     </div>
-    </>
   );
 };
-
-export default Book;
+export default Book
