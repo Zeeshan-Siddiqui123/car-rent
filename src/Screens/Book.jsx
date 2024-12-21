@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Spin, message } from 'antd';
+import { Spin } from 'antd';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -33,7 +33,7 @@ const Book = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-screen">
         <Spin size="large" />
       </div>
     );
@@ -41,7 +41,7 @@ const Book = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-screen">
         <h2>{error}</h2>
       </div>
     );
@@ -49,7 +49,7 @@ const Book = () => {
 
   if (!product) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-screen">
         <h2>No product found.</h2>
       </div>
     );
@@ -68,45 +68,52 @@ const Book = () => {
 
   return (
     <div>
-      <div className="img6 w-full h-[350px] flex items-center gap-2 mt-10">
+      {/* Hero Section */}
+      <div className="relative w-full h-[250px] md:h-[350px] flex items-center mt-10">
         <img
           src="https://carentoae.com/wp-content/uploads/2024/02/Audi-Banner.jpg"
           alt="Banner"
           className="w-full h-full object-cover"
         />
-        <div className="absolute ml-16 mt-[250px]">
-          <Link to="/" className="text-white mt-2">
-            Home/
+        <div className="absolute left-4 md:left-16 bottom-8 text-white space-y-2">
+          <Link to="/" className="text-sm md:text-base">
+            Home /
           </Link>
-          <Link to="/rent-a-car" className="text-white mt-2">
-            Go Back/
+          <Link to="/rent-a-car" className="text-sm md:text-base">
+            Go Back /
           </Link>
-          <h1 className="text-2xl font-bold mb-2 text-white">{product.description}</h1>
+          <h1 className="text-lg md:text-2xl font-bold">{product.description}</h1>
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-10 flex-wrap-reverse mt-10">
-        <form className="flex flex-col gap-3 justify-center bg-[#f5f5f5] px-10 py-5 shadow-md">
-          <div className="bg-[#5277ba] px-10 py-8 flex items-center flex-col gap-2">
-            <p className="text-white font-bold text-lg">Rs: {product.price} per day</p>
-            <p className="text-white font-bold text-lg">Rs: {Math.round(product.price / 24)} per hour</p>
+      {/* Form and Slider Section */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-10 flex-wrap-reverse mt-10 px-4">
+        {/* Booking Form */}
+        <form className="flex flex-col gap-3 bg-[#f5f5f5] px-6 py-4 shadow-md w-full max-w-md">
+          <div className="bg-[#5277ba] px-8 py-6 flex items-center flex-col gap-2">
+            <p className="text-white font-bold text-base md:text-lg">Rs: {product.price} per day</p>
+            <p className="text-white font-bold text-base md:text-lg">Rs: {Math.round(product.price / 24)} per hour</p>
           </div>
 
           <label className="text-black mt-4">PickUp Address</label>
-          <input type="text" placeholder="Pickup Address" className="px-10 py-4" />
+          <input type="text" placeholder="Pickup Address" className="px-4 py-2 border rounded-md" />
 
           <label className="text-black">PickUp Date</label>
-          <input type="datetime-local" className="px-10 py-4" />
+          <input type="datetime-local" className="px-4 py-2 border rounded-md" />
 
           <label className="text-black">Drop Off Address</label>
-          <input type="text" placeholder="Drop Off Address" className="px-10 py-4" />
+          <input type="text" placeholder="Drop Off Address" className="px-4 py-2 border rounded-md" />
 
           <label className="text-black">Drop Off Date</label>
-          <input type="datetime-local" className="px-10 py-4" />
+          <input type="datetime-local" className="px-4 py-2 border rounded-md" />
+
+          <button className="text-white bg-[#5277ba] px-4 py-2 rounded-md hover:bg-blue-700">
+            Book Now
+          </button>
         </form>
 
         {/* Slider Section */}
-        <div className="w-[600px]">
+        <div className="w-full max-w-lg">
           <Slider {...sliderSettings}>
             <div>
               <img src={product.image} alt={product.description} className="w-full h-auto" />
@@ -125,33 +132,22 @@ const Book = () => {
       </div>
 
       {/* Details Section */}
-      <div className="flex flex-col gap-5 mt-4">
-        <p className="text-white text-2xl text-center">About this Car</p>
-        <p className="text-white text-2xl text-center">Rent a {product.description} in Pakistan</p>
-        <p className="text-white text-2xl text-center">{product.description} Rental In Pakistan</p>
-        <p className="text-slate-400 text-center mx-10">
-          Rent and drive this {product.description}, Pakistan for {product.price} rupees per day.
-          Rental cost includes basic comprehensive insurance. A security deposit of Rs 2,500 is
-          required. Contact Time Out Rent a Car directly for bookings and inquiries.
+      <div className="flex flex-col gap-4 mt-10 px-4">
+        <p className="text-center text-xl md:text-2xl text-white">About this Car</p>
+        <p className="text-center text-base md:text-lg text-white">
+          Rent a {product.description} in Pakistan for {product.price} rupees per day. Rental cost includes basic
+          comprehensive insurance. A security deposit of Rs 2,500 is required. Contact Time Out Rent a Car directly for bookings and inquiries.
         </p>
-        <p className="text-white text-2xl text-center">You are eligible to rent a car across the Pakistan provided you have <br /> the mentioned documents valid with you:</p><hr />
-        <div className='flex flex-col items-center justify-center'>
-          <p className="text-slate-400 font-bold text-xl ">For Pakistan Residents</p>
-          
-            <p className='text-white'>Pakistan driving License</p>
-            <p className="text-white">Nation Identity Card</p>
-          
-        </div><hr />
-        <div className='flex flex-col items-center justify-center'>
-          <p className="text-slate-400 font-bold text-xl ">For Tourists Visiting The Pakistan</p>
-        
-            <p className='text-white'>Passport</p>
-            <p className="text-white">Visit Visa</p>
-            <p className="text-white">Home Country Driving License</p>
-            <p className="text-white">International Driving Permit (IDP)</p>
-          
-        </div><hr />
-        <p className='text-center text-slate-400'>Visitors from the GCC, US, UK, Canada, Europe, and certain other countries <br /> can drive with their home country’s driving license,  without needing an IDP. <br /> Find out if your country’s driving license is valid in the Pakistan</p>
+        <div className="bg-slate-800 p-4 rounded-md text-center text-slate-400">
+          <p className="font-bold">Required Documents:</p>
+          <ul className="list-disc list-inside">
+            <li>Pakistan driving License</li>
+            <li>National Identity Card</li>
+            <li>Passport (for tourists)</li>
+            <li>Visit Visa (for tourists)</li>
+            <li>International Driving Permit (IDP)</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
