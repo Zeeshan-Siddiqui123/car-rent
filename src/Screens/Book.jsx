@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Spin } from 'antd';
+import { Spin, Modal } from 'antd';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,6 +12,13 @@ const Book = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false); // Modal visibility state
+  const [formData, setFormData] = useState({
+    pickupAddress: '',
+    pickupDate: '',
+    dropOffAddress: '',
+    dropOffDate: '',
+  });
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -66,6 +73,29 @@ const Book = () => {
     autoplaySpeed: 2000,
   };
 
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setModalVisible(true); // Show modal on form submission
+  };
+
+  // Handle form field changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Reset form and close modal
+  const handleOk = () => {
+    setModalVisible(false);
+    setFormData({
+      pickupAddress: '',
+      pickupDate: '',
+      dropOffAddress: '',
+      dropOffDate: '',
+    });
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -89,25 +119,55 @@ const Book = () => {
       {/* Form and Slider Section */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-10 flex-wrap-reverse mt-10 px-4">
         {/* Booking Form */}
-        <form className="flex flex-col gap-3 bg-[#f5f5f5] px-6 py-4 shadow-md w-full max-w-md">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 bg-[#f5f5f5] px-6 py-4 shadow-md w-full max-w-md">
           <div className="bg-[#5277ba] px-8 py-6 flex items-center flex-col gap-2">
             <p className="text-white font-bold text-base md:text-lg">Rs: {product.price} per day</p>
             <p className="text-white font-bold text-base md:text-lg">Rs: {Math.round(product.price / 24)} per hour</p>
           </div>
 
           <label className="text-black mt-4">PickUp Address</label>
-          <input type="text" placeholder="Pickup Address" className="px-4 py-2 border rounded-md" />
+          <input
+            type="text"
+            name="pickupAddress"
+            value={formData.pickupAddress}
+            onChange={handleChange}
+            placeholder="Pickup Address"
+            className="px-4 py-2 border rounded-md"
+            required
+          />
 
           <label className="text-black">PickUp Date</label>
-          <input type="datetime-local" className="px-4 py-2 border rounded-md" />
+          <input
+            type="datetime-local"
+            name="pickupDate"
+            value={formData.pickupDate}
+            onChange={handleChange}
+            className="px-4 py-2 border rounded-md"
+            required
+          />
 
           <label className="text-black">Drop Off Address</label>
-          <input type="text" placeholder="Drop Off Address" className="px-4 py-2 border rounded-md" />
+          <input
+            type="text"
+            name="dropOffAddress"
+            value={formData.dropOffAddress}
+            onChange={handleChange}
+            placeholder="Drop Off Address"
+            className="px-4 py-2 border rounded-md"
+            required
+          />
 
           <label className="text-black">Drop Off Date</label>
-          <input type="datetime-local" className="px-4 py-2 border rounded-md" />
+          <input
+            type="datetime-local"
+            name="dropOffDate"
+            value={formData.dropOffDate}
+            onChange={handleChange}
+            className="px-4 py-2 border rounded-md"
+            required
+          />
 
-          <button className="text-white bg-[#5277ba] px-4 py-2 rounded-md hover:bg-blue-700">
+          <button type="submit" className="text-white bg-[#5277ba] px-4 py-2 rounded-md hover:bg-blue-700">
             Book Now
           </button>
         </form>
@@ -131,24 +191,17 @@ const Book = () => {
         </div>
       </div>
 
-      {/* Details Section */}
-      <div className="flex flex-col gap-4 mt-10 px-4">
-        <p className="text-center text-xl md:text-2xl text-white">About this Car</p>
-        <p className="text-center text-base md:text-lg text-white">
-          Rent a {product.description} in Pakistan for {product.price} rupees per day. Rental cost includes basic
-          comprehensive insurance. A security deposit of Rs 2,500 is required. Contact Time Out Rent a Car directly for bookings and inquiries.
-        </p>
-        <div className="bg-slate-800 p-4 rounded-md text-center text-slate-400">
-          <p className="font-bold">Required Documents:</p>
-          <ul className="list-disc list-inside">
-            <li>Pakistan driving License</li>
-            <li>National Identity Card</li>
-            <li>Passport (for tourists)</li>
-            <li>Visit Visa (for tourists)</li>
-            <li>International Driving Permit (IDP)</li>
-          </ul>
-        </div>
-      </div>
+      {/* Modal for Confirmation */}
+      <Modal
+        title="Booking Confirmed"
+        visible={modalVisible}
+        onOk={handleOk} // Reset form on OK
+        onCancel={() => setModalVisible(false)}
+        okText="OK"
+        cancelText="Cancel"
+      >
+        <p>Your booking has been successfully submitted! Thanks Foxr Choosing Us.</p>
+      </Modal>
     </div>
   );
 };

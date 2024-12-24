@@ -15,7 +15,7 @@ body{
     background-image: url(https://rental.maxwheelswp.com/wp-content/uploads/2022/06/bg-some.png);
     background-position: center;
     background-repeat: no-repeat;
-    /* background-size: cover; */
+    background-size: cover;
 }
 .bg-img2{
     background-image: url(https://carentoae.com/wp-content/uploads/2024/02/wp8833528-dubai-cars-wallpapers.jpg);
@@ -55,3 +55,14 @@ background-image: url(https://carentoae.com/wp-content/uploads/2024/02/9134f1621
         /* filter: brightness(90%); */
     
     }
+    .toggle{
+        visibility: hidden;
+      }
+      @media  screen and (max-width: 600px) {
+        .toggle{
+          visibility: visible;
+        }
+        .nav-linkk{
+          display: none;
+        }
+      }
